@@ -1,5 +1,5 @@
 # Imagen del contenedor que ejecuta tu código
-FROM node:12.20.1-buster-slim
+FROM node:10.23.0-slim
 
 LABEL maintainer="David Atencia <david.atencia@gmail.com>"
 
@@ -52,8 +52,11 @@ RUN echo "Cleaning up" && \
     apt-get autoremove -y && \
     apt-get clean
 
-# Copias tu archivo de código de tu repositorio de acción a la ruta `/`del contenedor
+# Copies your code file  repository to the filesystem 
 COPY entrypoint.sh /entrypoint.sh
+
+# change permission to execute the script and
+RUN chmod +x /entrypoint.sh
 
 # Archivo del código a ejecutar cuando comienza el contedor del docker (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
