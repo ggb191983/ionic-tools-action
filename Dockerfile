@@ -8,7 +8,8 @@ ENV IONIC_VERSION=6.12.3 \
     ANDROID_HOME=/opt/android-sdk-linux \
     ANDROID_TOOLS_VERSION=r25.2.5 \
     ANDROID_API_LEVEL=android-27 \
-    ANDROID_BUILD_TOOLS_VERSION=30.0.3
+    ANDROID_BUILD_TOOLS_VERSION=30.0.3 \
+    ANGULAR_CLI_VERSION=11.0.5
 
 RUN echo "Installing basics" && \
     mkdir -p /usr/share/man/man1 && \
@@ -42,7 +43,7 @@ RUN echo "Installing Android SDK" && \
 ENV PATH $PATH:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
 RUN echo "Installing Ionic & Cordova" && \
-    npm i -g @ionic/cli@${IONIC_VERSION} cordova@${CORDOVA_VERSION} cordova-res --unsafe-perm && \
+    npm i -g @ionic/cli@${IONIC_VERSION} cordova@${CORDOVA_VERSION}  @angular/cli@${ANGULAR_CLI_VERSION} cordova-res --unsafe-perm && \
     ionic --no-interactive config set -g daemon.updates false && \
     cordova telemetry off
 
